@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Lbc Remix</string>
+    <!-- Albums -->
+    <string name="albums_title">Lbc Remix Albums</string>
+    <string name="filter_hint">Filter by category</string>
+
+    <!-- Album Detail -->
+    <string name="album_title">Album</string>
+
+    <!-- Content descriptions -->
+    <string name="back_content_description">Back</string>
+</resources>
