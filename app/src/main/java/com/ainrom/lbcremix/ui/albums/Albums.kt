@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -120,7 +121,9 @@ fun TopBarContent(onFilterInputChanged: (String) -> Unit) {
             style = MaterialTheme.typography.h5
         )
         TextField(
-            modifier = Modifier.padding(bottom = 24.dp),
+            modifier = Modifier
+                .padding(bottom = 24.dp)
+                .testTag(stringResource(id = R.string.instrumented_text_field)),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = colorWhite,
                 cursorColor = colorWhite,
@@ -162,6 +165,7 @@ fun AlbumsList(
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier.testTag(stringResource(id = R.string.instrumented_column)),
     ) {
         items(albumsList.size) { index ->
             AlbumItem(

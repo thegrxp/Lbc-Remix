@@ -61,7 +61,7 @@ class RepositoryTest {
 
     @OptIn(FlowPreview::class)
     @Test
-    fun albums_ReturnsAlbums() = runTest {
+    fun albums_returnsAlbums() = runTest {
         `when`(albumDao.getAlbums()).thenReturn(FakeData.albums1.asFlow())
 
         val outputFlow = repo.albums().toList()
@@ -74,7 +74,7 @@ class RepositoryTest {
 
     @OptIn(FlowPreview::class)
     @Test
-    fun albumsByCategory_ReturnsAlbums() = runTest {
+    fun albumsByCategory_returnsAlbums() = runTest {
         `when`(albumDao.getCategory(2)).thenReturn(FakeData.albums2.asFlow())
 
         val outputFlow = repo.albumsByCategory(2).toList()
@@ -90,7 +90,7 @@ class RepositoryTest {
      */
     @OptIn(FlowPreview::class)
     @Test
-    fun albums_DbQuery_ReturnsAlbums() = runTest {
+    fun albums_dbQuery_returnsAlbums() = runTest {
         `when`(albumDao.getAlbums()).thenReturn(FakeData.albums1.asFlow())
         handleShouldFetch = { false }
 
@@ -107,7 +107,7 @@ class RepositoryTest {
      */
     @OptIn(FlowPreview::class)
     @Test
-    fun albums_NetworkCall_ReturnsAlbums() = runTest {
+    fun albums_networkCall_returnsAlbums() = runTest {
         `when`(albumDao.getAlbums()).thenReturn(FakeData.albums1.asFlow())
         handleShouldFetch = { true }
         handleFetch = { true }
@@ -130,7 +130,7 @@ class RepositoryTest {
      */
     @OptIn(FlowPreview::class)
     @Test
-    fun albums_NetworkCall_ThrowException() = runTest {
+    fun albums_networkCall_throwException() = runTest {
         `when`(albumDao.getAlbums()).thenReturn(FakeData.albums1.asFlow())
         handleShouldFetch = { true }
         handleFetchResult = { throw Exception() }
@@ -144,35 +144,35 @@ class RepositoryTest {
     }
 
     @Test
-    fun refresh_NetworkException_ReturnsError() = runTest {
+    fun refresh_networkException_returnsError() = runTest {
         `when`(webService.fetchAlbums()).thenThrow(RuntimeException())
         val output = repo.refresh()
         assert(output is Resource.Error)
     }
 
     @Test
-    fun refresh_InsertException_ReturnsError() = runTest {
+    fun refresh_insertException_returnsError() = runTest {
         `when`(albumDao.insertAlbums(null))
         val output = repo.refresh()
         assert(output is Resource.Error)
     }
 
     @Test
-    fun refresh_ReturnsSuccess() = runTest {
+    fun refresh_returnsSuccess() = runTest {
         `when`(webService.fetchAlbums()).thenReturn(FakeData.albums1.invoke())
         val output = repo.refresh()
         assert(output is Resource.Success)
     }
 
     @Test
-    fun getAlbum_ExistingId_ReturnsAlbum() = runTest {
+    fun getAlbum_existingId_returnsAlbum() = runTest {
         `when`(albumDao.getAlbum(999)).thenReturn(FakeData.album)
         val firstItem = repo.getAlbum(999)
         assert(firstItem?.id == 999L)
     }
 
     @Test
-    fun getAlbum_UnknownId_ReturnsNull() = runTest {
+    fun getAlbum_unknownId_returnsNull() = runTest {
         val firstItem = repo.getAlbum(111)
         assert(firstItem == null)
     }

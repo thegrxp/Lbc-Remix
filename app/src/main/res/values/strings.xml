@@ -9,4 +9,9 @@
 
     <!-- Content descriptions -->
     <string name="back_content_description">Back</string>
+
+    <!-- Test tags -->
+    <string name="instrumented_loading">testLoading</string>
+    <string name="instrumented_text_field">testTextField</string>
+    <string name="instrumented_column">testLazyColumn</string>
 </resources>

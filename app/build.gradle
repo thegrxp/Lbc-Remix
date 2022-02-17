@@ -92,6 +92,8 @@ dependencies {
     androidTestImplementation "androidx.test:core:$test_version"
     androidTestImplementation "androidx.test:runner:$test_version"
     androidTestImplementation "androidx.test:rules:$test_version"
+    androidTestImplementation "androidx.compose.ui:ui-test:$compose_version"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     testImplementation "junit:junit:4.13.2"
     testImplementation "org.mockito:mockito-core:4.3.1"
